@@ -1,8 +1,8 @@
 const loginLink = "https://www.hackerrank.com/auth/login";
 const codesObj = require("./codes");
-const puppeteer = require("puppeteer")
-const email = 'xamot46817@stvbz.com'
-const password = '222525' 
+const puppeteer = require("puppeteer");
+const email = 'hijip77075@lurenwu.com'
+const password = '12341234'
 // creates headless browser
 let browserStartPromise = puppeteer.launch({
     // visible 
@@ -49,7 +49,7 @@ browserStartPromise
     }).then(function () {
         let AllChallengesArrPromise =
             page.$$(".ui-btn.ui-btn-normal.primary-cta.ui-btn-line-primary.ui-btn-styled"
-                , { delay: 100 });
+                , { delay: 500 });
         return AllChallengesArrPromise;
     }).then(function (questionsArr) {
         // n number of question first 
@@ -62,7 +62,7 @@ browserStartPromise
 
 
 
-    function waitAndClick(selector, cPage) {
+function waitAndClick(selector, cPage) {
     return new Promise(function (resolve, reject) {
         let waitForModalPromise = cPage.waitForSelector(selector, { visible: true });
         waitForModalPromise
@@ -114,16 +114,14 @@ function questionSolver(page, question, answer) {
             }).then(function () {
                 return page.keyboard.press("X", { delay: 100 });
             }).then(function () {
-                let ctrlIsPressedP = page.keyboard.up("Control");
-                return ctrlIsPressedP;
-            })
-            .then(function () {
+                let ctrlIsUnPressedP = page.keyboard.up("Control");
+                return ctrlIsUnPressedP;
+            }).then(function () {
                 // focus 
                 let waitFOrEditorToBeInFocus =
                     waitAndClick(".monaco-editor.no-user-select.vs", page);
                 return waitFOrEditorToBeInFocus;
-            })
-            .then(function () {
+            }).then(function () {
                 let ctrlIsPressedP = page.keyboard.down("Control");
                 return ctrlIsPressedP;
             }).then(function () {
@@ -144,6 +142,5 @@ function questionSolver(page, question, answer) {
                 console.log(err)
                 reject(err);
             })
-              
     })
 }
