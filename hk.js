@@ -44,7 +44,7 @@ browserStartPromise
             waitAndClick("input[value='warmup']", page);
         return getToWarmUp;
     }).then(function () {
-        let waitFor3SecondsPromise = page.waitFor(3000);
+        let waitFor3SecondsPromise = page.waitForTimeout(3000);
         return waitFor3SecondsPromise;
     }).then(function () {
         let AllChallengesArrPromise =
